@@ -11,12 +11,11 @@ namespace Mimi.ObjectableEditorGUI
         private Rect position;
         private bool heightUpdate = true;
         private bool heightUpdateLate = false;
+        protected bool UpdateRootElement { get; set; } = true;
 
         protected EOGUIPropertyDrawer()
         {
             TopContext = new EOGUIContext(this);
-            RootElement = InitialRootElement();
-            InitialRootOptions(RootElement.Options);
         }
 
         public IEOGUIElementParent RootElement { get; set; }
@@ -39,6 +38,13 @@ namespace Mimi.ObjectableEditorGUI
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            if (UpdateRootElement)
+            {
+                RootElement = InitialRootElement();
+                InitialRootOptions(RootElement.Options);
+                UpdateRootElement = false;
+            }
+
             try
             {
                 TopContext.Init(property, position);
