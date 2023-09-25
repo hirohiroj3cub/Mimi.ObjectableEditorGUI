@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y $(TargetDir)$(AssemblyName).dll $(ProjectDir)..\dll\" />
+    <Exec Command="xcopy /Y $(TargetDir)$(AssemblyName).dll $(ProjectDir)..\dll\&#xD;&#xA;xcopy /Y $(TargetDir)$(AssemblyName).dll $(ProjectDir)..\..\UnitySample\Mimi.ObjectableEditorGUI.Sample\Assets\Mimi.ObjectableEditorGUI\" />
   </Target>
 
 </Project>
