@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimi.ObjectableEditorGUI.Core", "Mimi.ObjectableEditorGUI.Core\Mimi.ObjectableEditorGUI.Core.csproj", "{8F060377-57D4-4EBC-9327-0CD2A61290B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimi.InspectorAnimation", "Mimi.InspectorAnimation\Mimi.InspectorAnimation.csproj", "{C82B24D5-F17C-48F2-B7C6-57775E10F900}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mimi.ObjectableEditorGUI.Elements", "Mimi.ObjectableEditorGUI.Elements\Mimi.ObjectableEditorGUI.Elements.csproj", "{7C574228-106D-419A-B7F0-E81198ECCBEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F060377-57D4-4EBC-9327-0CD2A61290B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F060377-57D4-4EBC-9327-0CD2A61290B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F060377-57D4-4EBC-9327-0CD2A61290B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F060377-57D4-4EBC-9327-0CD2A61290B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C82B24D5-F17C-48F2-B7C6-57775E10F900}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C82B24D5-F17C-48F2-B7C6-57775E10F900}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C82B24D5-F17C-48F2-B7C6-57775E10F900}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C82B24D5-F17C-48F2-B7C6-57775E10F900}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C574228-106D-419A-B7F0-E81198ECCBEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C574228-106D-419A-B7F0-E81198ECCBEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C574228-106D-419A-B7F0-E81198ECCBEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C574228-106D-419A-B7F0-E81198ECCBEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3A30F155-617B-493F-BBDC-EC26E17A161B}
+	EndGlobalSection
+EndGlobal
