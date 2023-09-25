@@ -21,4 +21,8 @@
     </Reference>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y $(TargetDir)$(AssemblyName).dll $(ProjectDir)..\dll\" />
+  </Target>
+
 </Project>
