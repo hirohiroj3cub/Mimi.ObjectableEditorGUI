@@ -12,7 +12,7 @@ namespace Mimi.InspectorAnimation.Sample
 
         static AnimationTestDrawer()
         {
-            animation2 = new(0.5, true);
+            animation2 = new(0.5, false);
         }
 
         public AnimationTestDrawer()
