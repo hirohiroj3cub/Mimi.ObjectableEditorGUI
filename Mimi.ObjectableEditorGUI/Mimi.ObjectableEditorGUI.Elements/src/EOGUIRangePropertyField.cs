@@ -12,7 +12,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
     public abstract class EOGUIRangePropertyField<TSelf> : EOGUIRange<TSelf, EOGUIPropertyField<float>>
         where TSelf : EOGUIRangePropertyField<TSelf>
     {
-        protected EOGUIRangePropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, float minLimit, float maxLimit) : 
+        protected EOGUIRangePropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, float minLimit, float maxLimit) :
             base(new EOGUIPropertyField<float>(serializedPropertySelector), minLimit, maxLimit)
         {
         }

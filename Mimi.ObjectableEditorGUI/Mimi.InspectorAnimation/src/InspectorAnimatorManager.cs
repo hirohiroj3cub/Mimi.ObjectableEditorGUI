@@ -7,7 +7,7 @@ namespace Mimi.InspectorAnimation
 
     public class InspectorAnimatorManager
     {
-        private readonly Dictionary<InspectorUpdateGroup.GroupKey, InspectorUpdateGroup> updateGroups = 
+        private readonly Dictionary<InspectorUpdateGroup.GroupKey, InspectorUpdateGroup> updateGroups =
             new Dictionary<InspectorUpdateGroup.GroupKey, InspectorUpdateGroup>();
 
         public InspectorUpdateGroup[]? GetUpdateGroups(Editor[] editors, double frameRate)
