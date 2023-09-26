@@ -113,7 +113,7 @@ namespace Mimi.ObjectableEditorGUI.Sample
                 {
                     using var fontSetting = new GUIFontSettingScope(new(GUI.skin.button, fontSize: 10));
 
-                    animator.OnGUIUpdate(element.Status.SerializedProperty.serializedObject);
+                    animator.OnGUIUpdate(element.Status.SerializedProperty);
 
                     if (animator.IsPlaying)
                     {

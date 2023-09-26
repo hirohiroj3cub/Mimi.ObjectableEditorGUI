@@ -145,7 +145,7 @@ namespace Mimi.InspectorAnimation
         private DateTime lastUpdateTime;
         private TimeSpan? canceledAnimateTime;
         private TimeSpan previousTotalTime;
-        private SerializedObject? serializedObject;
+        private SerializedProperty? serializedProperty;
 
         public InspectorAnimator(double duration, bool isRepeating = false, double frameRate = 30.0)
             : this(TimeSpan.FromSeconds(duration), isRepeating, frameRate) { }
@@ -166,7 +166,7 @@ namespace Mimi.InspectorAnimation
             lastUpdateTime = DateTime.MinValue;
             canceledAnimateTime = null;
             previousTotalTime = TimeSpan.Zero;
-            serializedObject = null;
+            serializedProperty = null;
         }
 
         public TimeSpan Duration => duration;
@@ -180,7 +180,7 @@ namespace Mimi.InspectorAnimation
         public DateTime LastUpdateTime => lastUpdateTime;
         public TimeSpan? CanceledAnimateTime => canceledAnimateTime;
         public TimeSpan PreviousTotalTime => previousTotalTime;
-        public SerializedObject? SerializedObject => serializedObject;
+        public SerializedProperty? SerializedProperty => serializedProperty;
 
         public object? KeyObject => GetKeyObject();
 
@@ -218,7 +218,7 @@ namespace Mimi.InspectorAnimation
             isInit = true;
         }
 
-        public void OnGUIUpdate(SerializedObject serializedObject)
+        public void OnGUIUpdate(SerializedProperty serializedProperty)
         {
             var updateTime = DateTime.Now;
             bool isStopping = IsNotUpdatedAt(updateTime);
@@ -226,7 +226,7 @@ namespace Mimi.InspectorAnimation
 
             lastUpdateTime = updateTime;
 
-            OnTargetSetup(serializedObject);
+            OnTargetSetup(serializedProperty);
 
             if (isInit)
             {
@@ -307,9 +307,9 @@ namespace Mimi.InspectorAnimation
 
         private object? GetKeyObject()
         {
-            if (SerializedObject == null) return null;
-            if (isStatic) return SerializedObject.targetObject;
-            return SerializedObject;
+            if (SerializedProperty == null) return null;
+            if (isStatic) return SerializedProperty.serializedObject.targetObject;
+            return SerializedProperty.serializedObject;
         }
 
         private bool IsNotUpdatedAt(DateTime dateTime)
@@ -410,15 +410,12 @@ namespace Mimi.InspectorAnimation
             startTime = null;
         }
 
-        private void OnTargetSetup(SerializedObject serializedObject)
+        private void OnTargetSetup(SerializedProperty serializedProperty)
         {
-            if (serializedObject != this.serializedObject)
+            if (!SerializedProperty.EqualContents(serializedProperty, this.serializedProperty))
             {
-                if (!isStatic && this.serializedObject != null)
-                {
-                    isStatic = true;
-                }
-                this.serializedObject = serializedObject;
+                if (!isStatic && this.serializedProperty != null) isStatic = true;
+                this.serializedProperty = serializedProperty;
             }
         }
 
