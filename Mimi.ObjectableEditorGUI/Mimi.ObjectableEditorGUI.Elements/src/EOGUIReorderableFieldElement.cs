@@ -6,7 +6,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIReorderableFieldElement<T> : EOGUIReorderableFieldElement<EOGUIReorderableFieldElement<T>, T>
     {
-        public EOGUIReorderableFieldElement(ReorderableList reorderableList) : base(reorderableList)
+        public EOGUIReorderableFieldElement(ReorderableList reorderableList, T initValue) : base(reorderableList, initValue)
         {
         }
     }
@@ -20,7 +20,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
         private readonly GenericMenu.MenuFunction contextMenu_duplicat_func;
 
         public ReorderableList ReorderableList { get; }
-        protected EOGUIReorderableFieldElement(ReorderableList reorderableList) : base(default)
+        protected EOGUIReorderableFieldElement(ReorderableList reorderableList, T initValue) : base(initValue)
         {
             ReorderableList = reorderableList;
             contextMenu_delete_func = () => ReorderableList.onRemoveCallback(ReorderableList);

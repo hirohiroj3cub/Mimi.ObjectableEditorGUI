@@ -33,7 +33,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             public float Delta { get; private set; }
             public float Value { get => Field.Value; set => Field.Value = Clamp(value); }
 
-            public event Action<float> OnChangedValue;
+            public event Action<float>? OnChangedValue;
 
             public override float GetElementHeight()
             {
@@ -69,7 +69,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             rangeSlider.OnChangedValue += OnChangedValue;
         }
 
-        public event Action<float> OnChangedValue;
+        public event Action<float>? OnChangedValue;
 
         private static IEOGUIElementChild[] InitElements(TField field, float minLimit, float maxLimit, out Slider rangeSlider)
         {

@@ -9,7 +9,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public class EOGUIPopup<T> : IDictionary<string, T>
     {
-        private GUIContent[] contents;
+        private GUIContent[]? contents;
 
         public T this[string key] { get => ((IDictionary<string, T>)PopupMenu)[key]; set => ((IDictionary<string, T>)PopupMenu)[key] = value; }
 
@@ -47,7 +47,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             {
                 var p = PopupMenu.ElementAt(i);
                 contents[i].text = p.Key;
-                if (p.Value.Equals(currentValue))
+                if (EqualityComparer<T>.Default.Equals(p.Value, currentValue))
                 {
                     currentIndex = i;
                 }

@@ -14,6 +14,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {defaultKey, defaultElement }
             };
             DefaultElement = defaultElement;
+            Key = defaultKey;
         }
 
         public void DelaySetKey(T key)

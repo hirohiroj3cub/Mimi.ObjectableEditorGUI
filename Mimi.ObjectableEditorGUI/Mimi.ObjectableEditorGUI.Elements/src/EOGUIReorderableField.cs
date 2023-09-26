@@ -5,9 +5,16 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIReorderableField<T> : EOGUIReorderableField<EOGUIReorderableField<T>, EOGUIReorderableFieldElement<T>, T>
     {
+        public T InitValue { get; set; }
+
+        public EOGUIReorderableField(T initValue)
+        {
+            InitValue = initValue;
+        }
+
         protected override EOGUIReorderableFieldElement<T> CreateNewElement()
         {
-            return new EOGUIReorderableFieldElement<T>(ReorderableList);
+            return new EOGUIReorderableFieldElement<T>(ReorderableList, InitValue);
         }
     }
 

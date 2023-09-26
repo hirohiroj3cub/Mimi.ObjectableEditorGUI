@@ -5,13 +5,15 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIReorderablePropertyFieldElement<T> : EOGUIReorderablePropertyFieldElement<EOGUIReorderablePropertyFieldElement<T>, T>
     {
-
+        public EOGUIReorderablePropertyFieldElement() : base()
+        {
+        }
     }
 
     public abstract class EOGUIReorderablePropertyFieldElement<TSelf, T> : EOGUIPropertyField<TSelf, T>
         where TSelf : EOGUIReorderablePropertyFieldElement<TSelf, T>
     {
-        public EOGUIReorderablePropertyFieldElement() : base(new ObjectableEditorGUI.Context.EOGUIContextWriterSerializedProperty())
+        public EOGUIReorderablePropertyFieldElement() : base(new Context.EOGUIContextWriterSerializedProperty())
         {
         }
 

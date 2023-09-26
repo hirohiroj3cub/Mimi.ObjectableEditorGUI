@@ -2,10 +2,10 @@
 {
     public sealed class EOGUICustom : EOGUIElement<EOGUICustom>
     {
-        public EOGUIElementEventHandler<EOGUICustom> OnElementContextUpdateCustom { get; set; }
-        public EOGUIElementEventHandler<EOGUICustom> OnElementPreUpdateCustom { get; set; }
-        public EOGUIElementEventFuncHandler<EOGUICustom, float> GetElementHeightCustom { get; set; }
-        public EOGUIElementEventHandler<EOGUICustom> OnElementGUICustom { get; set; }
+        public EOGUIElementEventHandler<EOGUICustom>? OnElementContextUpdateCustom { get; set; }
+        public EOGUIElementEventHandler<EOGUICustom>? OnElementPreUpdateCustom { get; set; }
+        public EOGUIElementEventFuncHandler<EOGUICustom, float>? GetElementHeightCustom { get; set; }
+        public EOGUIElementEventHandler<EOGUICustom>? OnElementGUICustom { get; set; }
 
         public EOGUIHeightType HeightTypeCustom { get; set; } = EOGUIHeightType.Static;
         public override EOGUIHeightType HeightType => HeightTypeCustom;

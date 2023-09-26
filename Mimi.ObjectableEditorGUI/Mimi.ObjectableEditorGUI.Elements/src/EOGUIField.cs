@@ -17,11 +17,11 @@ namespace Mimi.ObjectableEditorGUI.Elements
     {
         private T value;
 
-        public event Action<T> OnChangedValue;
+        public event Action<T>? OnChangedValue;
 
         public EOGUIField(T defaultValue)
         {
-            Value = defaultValue;
+            value = defaultValue!;
 
             if (EOGUIFieldDefaultGUIs<int>.CheckInit<T>())
             {
@@ -71,7 +71,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 
         public override void OnElementGUI()
         {
-            Value = EOGUIFieldDefaultGUIs<T>.GUIField.Invoke(Status.rect, ValidLabel, value, IsDelayed);
+            Value = EOGUIFieldDefaultGUIs<T>.GUIField!.Invoke(Status.rect, ValidLabel, value, IsDelayed);
             EOGUIFieldClipBoard.ContextMenu(this);
         }
     }

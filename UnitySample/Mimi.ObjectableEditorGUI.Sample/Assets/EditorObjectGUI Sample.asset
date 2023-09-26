@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleDataB1:
     sampleDataA1:
-      intValue: 22
-      stringValue: Fox
-      minValue: -5.1974726
-      maxValue: -1.5597761
-      rangeValue: -1.5597761
-      arrayValue: ffffff7f07000000cb00000067ffffff13010000
-      arrayDataC: []
+      intValue: 61
+      stringValue: Dog
+      minValue: 0.46
+      maxValue: 5.16
+      rangeValue: 5.16
+      arrayValue: 039d737f07000000cb00000027feffff13010000
+      arrayDataC:
+      - text: 
+        num: 197
+      - text: 
+        num: 0
   sampleDataB2:
     sampleDataA1:
       intValue: 598

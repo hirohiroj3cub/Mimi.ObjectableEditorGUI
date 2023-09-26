@@ -1,5 +1,7 @@
 ﻿using Mimi.ObjectableEditorGUI.Context;
 using System;
+using System.Data.SqlTypes;
+using System.Runtime.ConstrainedExecution;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,12 +21,39 @@ namespace Mimi.ObjectableEditorGUI.Elements
     public abstract class EOGUIPropertyField<TSelf, T> : EOGUIProperty<TSelf>, IEOGUIElementField<TSelf, T>
         where TSelf : EOGUIPropertyField<TSelf, T>
     {
+        private struct InitValueObject
+        {
+            private T value;
+            private bool hasValue;
+            private bool isUsed;
+
+            public T Value
+            {
+                readonly get => value;
+                set
+                {
+                    this.value = value;
+                    hasValue = true;
+                }
+            }
+
+            public readonly bool HasValue => hasValue;
+
+            public bool IsUsed
+            {
+                readonly get => isUsed;
+                set
+                {
+                    isUsed = value;
+                }
+            }
+        }
+
         private bool throwedGetterError = false;
         private bool throwedSetterError = false;
-        private bool hasInitValue;
-        private T initValue;
+        private InitValueObject initValue;
 
-        public event Action<T> OnChangedValue;
+        public event Action<T>? OnChangedValue;
 
         protected EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
         {
@@ -32,18 +61,20 @@ namespace Mimi.ObjectableEditorGUI.Elements
             Setter = EOGUIPropertyFieldDefaultAccesser<T>.Setter;
         }
 
-        public Func<SerializedProperty, T> Getter { get; set; }
-        public Action<SerializedProperty, T> Setter { get; set; }
+        public Func<SerializedProperty, T>? Getter { get; set; }
+        public Action<SerializedProperty, T>? Setter { get; set; }
 
         public override void OnElementContextUpdate()
         {
             base.OnElementContextUpdate();
-            if (hasInitValue && SerializedProperty != null)
+            if (SerializedProperty != null && initValue.HasValue && !initValue.IsUsed)
             {
-                Setter.Invoke(SerializedProperty, initValue);
-                hasInitValue = false;
+                Setter!.Invoke(SerializedProperty, initValue.Value);
+                initValue.IsUsed = true;
             }
         }
+
+        public bool HasValue => initValue.HasValue || SerializedProperty != null;
 
         public T Value
         {
@@ -53,11 +84,11 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {
                     if (SerializedProperty == null)
                     {
-                        return initValue;
+                        return initValue.Value;
                     }
                     else
                     {
-                        return Getter.Invoke(SerializedProperty);
+                        return Getter!.Invoke(SerializedProperty);
                     }
                 }
                 catch (Exception e)
@@ -67,7 +98,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                         Debug.LogException(e);
                         throwedGetterError = true;
                     }
-                    return default;
+                    return initValue.Value;
                 }
             }
 
@@ -77,13 +108,13 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {
                     if (SerializedProperty == null)
                     {
-                        hasInitValue = true;
-                        initValue = value;
+                        initValue.Value = value;
                     }
                     else
                     {
-                        Setter.Invoke(SerializedProperty, value);
+                        Setter!.Invoke(SerializedProperty, value);
                         OnChangedValue?.Invoke(value);
+                        SerializedProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
                 catch (Exception e)
