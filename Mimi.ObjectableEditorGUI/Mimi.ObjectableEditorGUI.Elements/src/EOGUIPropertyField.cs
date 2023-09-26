@@ -1,6 +1,7 @@
 ﻿using Mimi.ObjectableEditorGUI.Context;
 using System;
 using System.Data.SqlTypes;
+using System.Runtime.ConstrainedExecution;
 using UnityEditor;
 using UnityEngine;
 
@@ -113,6 +114,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                     {
                         Setter!.Invoke(SerializedProperty, value);
                         OnChangedValue?.Invoke(value);
+                        SerializedProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
                 catch (Exception e)
