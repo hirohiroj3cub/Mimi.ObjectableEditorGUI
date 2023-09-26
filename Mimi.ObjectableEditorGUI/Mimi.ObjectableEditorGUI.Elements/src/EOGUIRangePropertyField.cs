@@ -1,4 +1,5 @@
 ﻿using Mimi.ObjectableEditorGUI.Context;
+using UnityEngine;
 
 namespace Mimi.ObjectableEditorGUI.Elements
 {
@@ -13,7 +14,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
         where TSelf : EOGUIRangePropertyField<TSelf>
     {
         protected EOGUIRangePropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, float minLimit, float maxLimit) :
-            base(new EOGUIPropertyField<float>(serializedPropertySelector), minLimit, maxLimit)
+            base(new EOGUIPropertyField<float>(serializedPropertySelector, Mathf.Clamp(0f, minLimit, maxLimit)), minLimit, maxLimit)
         {
         }
     }

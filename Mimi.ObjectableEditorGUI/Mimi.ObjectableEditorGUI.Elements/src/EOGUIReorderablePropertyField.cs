@@ -11,7 +11,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 
         protected override EOGUIReorderablePropertyFieldElement<T> CreateNewElement()
         {
-            return new EOGUIReorderablePropertyFieldElement<T>();
+            return new EOGUIReorderablePropertyFieldElement<T>(DefaultValue);
         }
     }
 

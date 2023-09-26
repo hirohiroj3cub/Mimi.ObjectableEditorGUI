@@ -42,7 +42,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             base.OnElementContextUpdate();
             if (hasInitValue && SerializedProperty != null)
             {
-                Setter.Invoke(SerializedProperty, initValue);
+                Setter!.Invoke(SerializedProperty, initValue);
                 hasInitValue = false;
             }
         }
@@ -59,7 +59,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                     }
                     else
                     {
-                        return Getter.Invoke(SerializedProperty);
+                        return Getter!.Invoke(SerializedProperty);
                     }
                 }
                 catch (Exception e)
@@ -84,7 +84,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                     }
                     else
                     {
-                        Setter.Invoke(SerializedProperty, value);
+                        Setter!.Invoke(SerializedProperty, value);
                         OnChangedValue?.Invoke(value);
                     }
                 }

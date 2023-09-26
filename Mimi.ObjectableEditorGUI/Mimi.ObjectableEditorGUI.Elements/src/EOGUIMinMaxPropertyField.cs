@@ -13,7 +13,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
         where TSelf : EOGUIMinMaxPropertyField<TSelf>
     {
         public EOGUIMinMaxPropertyField(EOGUIContextWriterSerializedProperty minProperty, EOGUIContextWriterSerializedProperty maxProperty, float minLimit, float maxLimit)
-            : base(new EOGUIPropertyField<float>(minProperty), new EOGUIPropertyField<float>(maxProperty), minLimit, maxLimit)
+            : base(new EOGUIPropertyField<float>(minProperty, minLimit), new EOGUIPropertyField<float>(maxProperty, maxLimit), minLimit, maxLimit)
         {
         }
     }

@@ -9,7 +9,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
         public delegate T GUIFunc(Rect rect, GUIContent label, T value);
         public delegate float GUIHeight(GUIContent label, T value);
 
-        public static GUIFuncWithDelayed GUIField { get; set; }
+        public static GUIFuncWithDelayed? GUIField { get; set; }
         public static GUIHeight Height { get; set; } = (GUIContent label, T value) => EditorGUIUtility.singleLineHeight;
 
         public static bool CheckInit<T2>()
