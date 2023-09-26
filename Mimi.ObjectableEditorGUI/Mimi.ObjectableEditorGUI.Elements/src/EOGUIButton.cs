@@ -81,7 +81,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             }
         }
 
-        public EOGUIElementEventHandler<TSelf> Add(Action action)
+        public EOGUIElementEventHandler<TSelf>? Add(Action action)
         {
             if (action == null) return null;
 
@@ -91,7 +91,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             return Action;
         }
 
-        public EOGUIElementEventHandler<TSelf> Add(EOGUIElementEventHandler<TSelf> action)
+        public EOGUIElementEventHandler<TSelf>? Add(EOGUIElementEventHandler<TSelf> action)
         {
             if (action == null) return null;
 

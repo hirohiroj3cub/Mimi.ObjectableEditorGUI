@@ -23,7 +23,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 
         private static class ClipDatas<T>
         {
-            public static ClipData<T> clipData;
+            public static ClipData<T>? clipData;
         }
 
         private static readonly GUIContent label_copy = new GUIContent("Copy Field");
@@ -57,7 +57,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {
                     ref var clipData = ref ClipDatas<T>.clipData;
                     JsonUtility.FromJsonOverwrite(UnityEngine.GUIUtility.systemCopyBuffer, clipData);
-                    if (clipData.typeName == typeof(T).FullName)
+                    if (clipData?.typeName == typeof(T).FullName)
                     {
                         var value = clipData.value;
                         contextMenu.AddItem(label_paste, false, () => field.Value = value);

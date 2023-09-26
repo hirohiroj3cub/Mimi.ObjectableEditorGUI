@@ -6,8 +6,8 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public static class EOGUIPropertyFieldDefaultAccesser<T>
     {
-        public static Func<SerializedProperty, T> Getter { get; set; }
-        public static Action<SerializedProperty, T> Setter { get; set; }
+        public static Func<SerializedProperty, T>? Getter { get; set; }
+        public static Action<SerializedProperty, T>? Setter { get; set; }
 
         static EOGUIPropertyFieldDefaultAccesser()
         {
@@ -120,7 +120,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
             else if (type.IsEnum)
             {
                 Getter = (prop) => (T)(object)prop.intValue;
-                Setter = (prop, value) => prop.intValue = (int)(object)value;
+                Setter = (prop, value) => prop.intValue = (int)(object)value!;
             }
         }
     }

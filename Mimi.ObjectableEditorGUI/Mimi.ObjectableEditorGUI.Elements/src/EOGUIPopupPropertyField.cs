@@ -5,7 +5,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIPopupPropertyField<T> : EOGUIPopupPropertyField<EOGUIPopupPropertyField<T>, T>
     {
-        public EOGUIPopupPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
+        public EOGUIPopupPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector, initValue)
         {
         }
     }
@@ -16,7 +16,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
         public override EOGUIHeightType HeightType => EOGUIHeightType.Static;
         public EOGUIPopup<T> Popup { get; }
 
-        protected EOGUIPopupPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
+        protected EOGUIPopupPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector, initValue)
         {
             Popup = new EOGUIPopup<T>();
         }

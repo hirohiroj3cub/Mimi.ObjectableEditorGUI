@@ -3,10 +3,9 @@ using System;
 
 namespace Mimi.ObjectableEditorGUI.Elements
 {
-
     public sealed class EOGUIReorderablePropertyField<T> : EOGUIReorderablePropertyField<EOGUIReorderablePropertyField<T>, EOGUIReorderablePropertyFieldElement<T>, T>
     {
-        public EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter) : base(serializedPropertyWriter)
+        public EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter, T defaultValue) : base(serializedPropertyWriter, defaultValue)
         {
         }
 
@@ -26,9 +25,9 @@ namespace Mimi.ObjectableEditorGUI.Elements
         public T DefaultValue { get; set; }
         public EOGUIElementChildrenValueList<TSelf, TElement, T> Values { get; }
 
-        protected EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter) : base(serializedPropertyWriter)
+        protected EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter, T defaultValue) : base(serializedPropertyWriter)
         {
-            DefaultValue = default;
+            DefaultValue = defaultValue;
             Values = new EOGUIElementChildrenValueList<TSelf, TElement, T>(ThisT, CreateNewElement, getter, setter);
         }
 

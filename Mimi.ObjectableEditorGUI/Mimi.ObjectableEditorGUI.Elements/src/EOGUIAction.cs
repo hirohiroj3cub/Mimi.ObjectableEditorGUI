@@ -8,9 +8,9 @@
         }
 
         public override EOGUIHeightType HeightType => EOGUIHeightType.Static;
-        public EOGUIElementEventHandler<EOGUIAction> OnElementContextUpdateCustom { get; set; }
-        public EOGUIElementEventHandler<EOGUIAction> OnElementPreUpdateCustom { get; set; }
-        public EOGUIElementEventHandler<EOGUIAction> OnElementGUICustom { get; set; }
+        public EOGUIElementEventHandler<EOGUIAction>? OnElementContextUpdateCustom { get; set; }
+        public EOGUIElementEventHandler<EOGUIAction>? OnElementPreUpdateCustom { get; set; }
+        public EOGUIElementEventHandler<EOGUIAction>? OnElementGUICustom { get; set; }
 
         public override void OnElementContextUpdate()
         {

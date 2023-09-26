@@ -6,12 +6,13 @@ using UnityEngine;
 namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIPropertyField<T> : EOGUIPropertyField<EOGUIPropertyField<T>, T>
+        where T : notnull
     {
-        public EOGUIPropertyField() : base(new EOGUIContextWriterSerializedProperty())
+        public EOGUIPropertyField(T initValue) : base(new EOGUIContextWriterSerializedProperty(), initValue)
         {
         }
 
-        public EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
+        public EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector, initValue)
         {
         }
     }
@@ -24,16 +25,17 @@ namespace Mimi.ObjectableEditorGUI.Elements
         private bool hasInitValue;
         private T initValue;
 
-        public event Action<T> OnChangedValue;
+        public event Action<T>? OnChangedValue;
 
-        protected EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
+        protected EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector)
         {
+            this.initValue = initValue;
             Getter = EOGUIPropertyFieldDefaultAccesser<T>.Getter;
             Setter = EOGUIPropertyFieldDefaultAccesser<T>.Setter;
         }
 
-        public Func<SerializedProperty, T> Getter { get; set; }
-        public Action<SerializedProperty, T> Setter { get; set; }
+        public Func<SerializedProperty, T>? Getter { get; set; }
+        public Action<SerializedProperty, T>? Setter { get; set; }
 
         public override void OnElementContextUpdate()
         {
@@ -67,7 +69,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                         Debug.LogException(e);
                         throwedGetterError = true;
                     }
-                    return default;
+                    return initValue;
                 }
             }
 

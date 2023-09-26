@@ -34,10 +34,10 @@ namespace Mimi.ObjectableEditorGUI.Elements
         protected EOGUIPopupField(T defaultValue)
         {
             Popup = new EOGUIPopup<T>();
-            Value = defaultValue;
+            value = defaultValue;
         }
 
-        public event Action<T> OnChangedValue;
+        public event Action<T>? OnChangedValue;
 
         public override float GetElementHeight()
         {
