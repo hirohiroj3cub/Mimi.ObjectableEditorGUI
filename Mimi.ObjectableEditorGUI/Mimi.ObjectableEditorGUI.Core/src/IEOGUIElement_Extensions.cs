@@ -148,7 +148,7 @@ namespace Mimi.ObjectableEditorGUI
             {
                 var animator = element.ExtensionsResource.animator;
 
-                animator.OnGUIUpdate(element.Status.SerializedProperty.serializedObject);
+                animator.OnGUIUpdate(element.Status.SerializedProperty);
                 if (element.Context.Drawer.HeightUpdate)
                 {
                     float newTarget = element.GetElementHeight();

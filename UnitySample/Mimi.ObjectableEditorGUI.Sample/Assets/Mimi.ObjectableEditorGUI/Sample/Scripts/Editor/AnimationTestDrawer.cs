@@ -30,8 +30,8 @@ namespace Mimi.InspectorAnimation.Sample
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-            animation1.OnGUIUpdate(property.serializedObject);
-            animation2.OnGUIUpdate(property.serializedObject);
+            animation1.OnGUIUpdate(property);
+            animation2.OnGUIUpdate(property);
 
             position = new RectOffset(2, 2, 2, 2).Remove(position);
 
