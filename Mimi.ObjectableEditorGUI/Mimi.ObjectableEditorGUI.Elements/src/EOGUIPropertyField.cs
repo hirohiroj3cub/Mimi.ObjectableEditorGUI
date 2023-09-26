@@ -1,18 +1,18 @@
 ﻿using Mimi.ObjectableEditorGUI.Context;
 using System;
+using System.Data.SqlTypes;
 using UnityEditor;
 using UnityEngine;
 
 namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIPropertyField<T> : EOGUIPropertyField<EOGUIPropertyField<T>, T>
-        where T : notnull
     {
-        public EOGUIPropertyField(T initValue) : base(new EOGUIContextWriterSerializedProperty(), initValue)
+        public EOGUIPropertyField() : base(new EOGUIContextWriterSerializedProperty())
         {
         }
 
-        public EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector, initValue)
+        public EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
         {
         }
     }
@@ -20,16 +20,42 @@ namespace Mimi.ObjectableEditorGUI.Elements
     public abstract class EOGUIPropertyField<TSelf, T> : EOGUIProperty<TSelf>, IEOGUIElementField<TSelf, T>
         where TSelf : EOGUIPropertyField<TSelf, T>
     {
+        private struct InitValueObject
+        {
+            private T value;
+            private bool hasValue;
+            private bool isUsed;
+
+            public T Value
+            {
+                readonly get => value;
+                set
+                {
+                    this.value = value;
+                    hasValue = true;
+                }
+            }
+
+            public readonly bool HasValue => hasValue;
+
+            public bool IsUsed
+            {
+                readonly get => isUsed;
+                set
+                {
+                    isUsed = value;
+                }
+            }
+        }
+
         private bool throwedGetterError = false;
         private bool throwedSetterError = false;
-        private bool hasInitValue;
-        private T initValue;
+        private InitValueObject initValue;
 
         public event Action<T>? OnChangedValue;
 
-        protected EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector, T initValue) : base(serializedPropertySelector)
+        protected EOGUIPropertyField(EOGUIContextWriterSerializedProperty serializedPropertySelector) : base(serializedPropertySelector)
         {
-            this.initValue = initValue;
             Getter = EOGUIPropertyFieldDefaultAccesser<T>.Getter;
             Setter = EOGUIPropertyFieldDefaultAccesser<T>.Setter;
         }
@@ -40,12 +66,14 @@ namespace Mimi.ObjectableEditorGUI.Elements
         public override void OnElementContextUpdate()
         {
             base.OnElementContextUpdate();
-            if (hasInitValue && SerializedProperty != null)
+            if (SerializedProperty != null && initValue.HasValue && !initValue.IsUsed)
             {
-                Setter!.Invoke(SerializedProperty, initValue);
-                hasInitValue = false;
+                Setter!.Invoke(SerializedProperty, initValue.Value);
+                initValue.IsUsed = true;
             }
         }
+
+        public bool HasValue => initValue.HasValue || SerializedProperty != null;
 
         public T Value
         {
@@ -55,7 +83,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {
                     if (SerializedProperty == null)
                     {
-                        return initValue;
+                        return initValue.Value;
                     }
                     else
                     {
@@ -69,7 +97,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                         Debug.LogException(e);
                         throwedGetterError = true;
                     }
-                    return initValue;
+                    return initValue.Value;
                 }
             }
 
@@ -79,8 +107,7 @@ namespace Mimi.ObjectableEditorGUI.Elements
                 {
                     if (SerializedProperty == null)
                     {
-                        hasInitValue = true;
-                        initValue = value;
+                        initValue.Value = value;
                     }
                     else
                     {

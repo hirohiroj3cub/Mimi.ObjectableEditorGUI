@@ -5,13 +5,13 @@ namespace Mimi.ObjectableEditorGUI.Elements
 {
     public sealed class EOGUIReorderablePropertyField<T> : EOGUIReorderablePropertyField<EOGUIReorderablePropertyField<T>, EOGUIReorderablePropertyFieldElement<T>, T>
     {
-        public EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter, T defaultValue) : base(serializedPropertyWriter, defaultValue)
+        public EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter) : base(serializedPropertyWriter)
         {
         }
 
         protected override EOGUIReorderablePropertyFieldElement<T> CreateNewElement()
         {
-            return new EOGUIReorderablePropertyFieldElement<T>(DefaultValue);
+            return new EOGUIReorderablePropertyFieldElement<T>();
         }
     }
 
@@ -22,12 +22,10 @@ namespace Mimi.ObjectableEditorGUI.Elements
         private static readonly Func<TElement, T> getter = e => e.Value;
         private static readonly Action<TElement, T> setter = (e, value) => e.Value = value;
 
-        public T DefaultValue { get; set; }
         public EOGUIElementChildrenValueList<TSelf, TElement, T> Values { get; }
 
-        protected EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter, T defaultValue) : base(serializedPropertyWriter)
+        protected EOGUIReorderablePropertyField(EOGUIContextWriterSerializedProperty serializedPropertyWriter) : base(serializedPropertyWriter)
         {
-            DefaultValue = defaultValue;
             Values = new EOGUIElementChildrenValueList<TSelf, TElement, T>(ThisT, CreateNewElement, getter, setter);
         }
 

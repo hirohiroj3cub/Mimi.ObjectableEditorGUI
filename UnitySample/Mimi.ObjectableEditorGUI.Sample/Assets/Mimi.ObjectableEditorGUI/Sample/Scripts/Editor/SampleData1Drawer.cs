@@ -399,7 +399,7 @@ namespace Mimi.ObjectableEditorGUI.Sample
                 }
             };
 
-            var fieldArray = new EOGUIReorderableField<string>();
+            var fieldArray = new EOGUIReorderableField<string>("defaultText");
             var propertyFieldArray = new EOGUIReorderablePropertyField<int>(new() { "arrayValue" });
             var propertyArray = new EOGUIReorderableProperty(new() { "arrayDataC" });
             var switcerKey = new EOGUIPopupField<int>(0)
@@ -422,7 +422,7 @@ namespace Mimi.ObjectableEditorGUI.Sample
                 array.DelaySetKey(v);
             };
 
-            var fieldArray2 = new EOGUIReorderableField<string>();
+            var fieldArray2 = new EOGUIReorderableField<string>("defaultText");
             var propertyFieldArray2 = new EOGUIReorderablePropertyField<int>(new() { "arrayValue" });
             var propertyArray2 = new EOGUIReorderableProperty(new() { "arrayDataC" });
 
