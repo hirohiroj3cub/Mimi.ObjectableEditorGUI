@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="call &quot;$(ProjectDir)..\copy.bat&quot; &quot;$(TargetDir)&quot; &quot;$(AssemblyName)&quot; &quot;$(ProjectDir)&quot;" />
+    <Exec Command="call $(ProjectDir)..\copy.bat" />
   </Target>
 
 </Project>
