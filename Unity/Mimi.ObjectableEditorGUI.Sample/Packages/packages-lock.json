@@ -136,10 +136,11 @@
       "url": "https://packages.unity.com"
     },
     "net.mimi.objectable_editor_gui": {
-      "version": "file:../../Mimi.ObjectableEditorGUI.Package/Assets/Plugins/Mimi.ObjectableEditorGUI",
+      "version": "https://github.com/hirohiroj3cub/Mimi.ObjectableEditorGUI.git?path=Unity/Mimi.ObjectableEditorGUI.Package/Assets/Plugins/Mimi.ObjectableEditorGUI#dev",
       "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "83f8e0fdcbf451b965d0d7e47758328cbf316d13"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
