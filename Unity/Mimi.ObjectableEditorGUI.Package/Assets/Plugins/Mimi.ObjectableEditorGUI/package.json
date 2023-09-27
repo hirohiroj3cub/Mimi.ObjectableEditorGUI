@@ -1,0 +1,11 @@
+{
+    "name": "net.mimi.objectable_editor_gui",
+    "displayName": "ObjectableEditorGUI",
+    "author": { "name": "hirohiroj3cub", "url": "https://github.com/hirohiroj3cub" },
+    "version": "0.0.0",
+    "unity": "2022.3",
+    "description": "Object base UI on Unity Editor GUI (not GUILayout).",
+    "keywords": [ "GUI", "Editor" ],
+    "license": "MIT",
+    "dependencies": {}
+}
