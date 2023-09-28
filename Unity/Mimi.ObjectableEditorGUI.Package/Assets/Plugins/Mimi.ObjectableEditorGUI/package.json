@@ -9,8 +9,15 @@
   "unity": "2022.3",
   "description": "Object base UI on Unity Editor GUI (not GUILayout).",
   "keywords": [
+    "ObjectableEditorGUI",
     "GUI",
     "Editor"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "licensesUrl": "https://github.com/hirohiroj3cub/Mimi.ObjectableEditorGUI.git?path=LICENSE",
+  "documentationUrl": "https://github.com/hirohiroj3cub/Mimi.ObjectableEditorGUI.git?path=README.md",
+  "repository": {
+    "url": "https://github.com/hirohiroj3cub/Mimi.ObjectableEditorGUI.git",
+    "type": "git"
+  }
 }
